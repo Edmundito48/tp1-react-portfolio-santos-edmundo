@@ -1,71 +1,28 @@
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Footer from './components/Footer';
+import { Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Skills from './pages/Skills';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
 import './App.css';
 
 function App() {
-  const listaSkills = [
-    { id: 1, nombre: 'React', nivel: 'Inicial', descripcion: 'Componentes, props, estado con useState y JSX.' },
-    { id: 2, nombre: 'JavaScript (ES6+)', nivel: 'En aprendizaje', descripcion: 'Manejo de arrays, funciones flecha y eventos.' },
-    { id: 3, nombre: 'C# & .NET', nivel: 'Académico', descripcion: 'Programación orientada a objetos, clases y métodos.' },
-    { id: 4, nombre: 'HTML5 & CSS3', nivel: 'Intermedio', descripcion: 'Estructura semántica básica y hojas de estilo.' },
-    { id: 5, nombre: 'SQL', nivel: 'Académico', descripcion: 'Consultas de bases de datos relacionales.' },
-    { id: 6, nombre: 'Git & GitHub', nivel: 'Inicial', descripcion: 'Control de versiones y repositorios.' }
-  ];
-
-  const listaProyectos = [
-    {
-      id: 101,
-      titulo: 'Página Web Gimnasio Fuerza Total',
-      categoria: 'Web',
-      descripcion: 'Sitio informativo hecho con HTML y CSS con información de actividades y rutinas.',
-      tecnologias: ['HTML', 'CSS', 'JavaScript'],
-      link: 'https://github.com/Edmundito48'
-    },
-    {
-      id: 102,
-      titulo: 'Sistema de Gestión en Consola',
-      categoria: 'Software',
-      descripcion: 'Programa en C# aplicando clases y objetos para registrar productos.',
-      tecnologias: ['C#', '.NET'],
-      link: 'https://github.com/Edmundito48'
-    },
-    {
-      id: 103,
-      titulo: 'Portfolio Personal en React',
-      categoria: 'Web',
-      descripcion: 'Trabajo práctico para aplicar componentes, props y hooks.',
-      tecnologias: ['React', 'Vite', 'CSS'],
-      link: 'https://github.com/Edmundito48'
-    }
-  ];
-
   return (
-    <div className="container">
-      <Header 
-        nombre="Edmundo Gabriel Arón Santos" 
-        titulo="Estudiante de Programación - UTN FRT" 
-      />
+    <div className="app-layout">
+      {/* Menú lateral (30%) */}
+      <Sidebar />
 
-      <Hero 
-        saludo="Hola, bienvenido a mi portfolio"
-        subtitulo="Estudiante en la UTN Facultad Regional Tucumán"
-        descripcion="En esta página muestro lo que voy aprendiendo en programación y desarrollo web (no todo el contenido de este portfolio es real)."
-      />
-
-      <main>
-        <About />
-        <Skills skills={listaSkills} />
-        <Projects proyectos={listaProyectos} />
+      {/* Área de contenido principal (70%) */}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
-
-      <Footer 
-        email="edmunditog.aronsantos@gmail.com"
-        ubicacion="Lules, Tucumán, Argentina"
-      />
     </div>
   );
 }
